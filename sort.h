@@ -1,11 +1,13 @@
 #ifndef SORT_H
 #define SORT_H
 
+#include "str_change.h"
 #include "str_compare.h"
 #include "text_data.h"
 
-typedef enum cmp_res (*cmp_func_t)(char *str1, char *str2);
+typedef enum cmp_res (*cmp_func_t)(void *var1, void *var2);
+typedef void         (*chng_func_t)(void *var1, void *var2);
 
-void SortText(struct Text_data *onegin, cmp_func_t cmp_func);
+void Sort(void *data, size_t type_size, size_t data_size, cmp_func_t cmp_func, chng_func_t chng_func);
 
 #endif

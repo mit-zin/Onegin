@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <assert.h>
 
+#include "str_change.h"
 #include "str_compare.h"
 #include "sort.h"
 #include "text_data.h"
@@ -19,6 +20,7 @@ int main(void)
     struct Text_data Onegin = {};
 
     enum func_res res = ReadFile(&Onegin, "onegin_f2.txt");
+
 
     /*printf("%s\n", Onegin.buffer);
     printf("%c\n", Onegin.buffer[0]);
@@ -41,7 +43,7 @@ int main(void)
         fgets(text[i], STR_LEN, input);
     }*/
 
-    SortText(&Onegin, &StrCompare);
+    Sort(Onegin.text, sizeof(char **), Onegin.n_strs, &StrCompare, &StrChange);
     //printf("%c\n", text[0][0]);
 
     //StrChange(text[0], text[1], STR_LEN);
@@ -55,7 +57,7 @@ int main(void)
 
     fprintf(output, "\n\n\n\n\nBACK SORT\n\n\n\n\n");
 
-    SortText(&Onegin, &BackStrCompare);
+    Sort(Onegin.text, sizeof(char **), Onegin.n_strs, &BackStrCompare, &StrChange);
 
     for (size_t i = 0; i< Onegin.n_strs; i++)
         fputs(Onegin.text[i], output);

@@ -8,7 +8,7 @@ enum cmp_res
     SECOND_SMALLER = 1
 };
 
-enum cmp_res StrCompare    (char *str1, char *str2);
-enum cmp_res BackStrCompare(char *str1, char *str2);
+enum cmp_res StrCompare    (void *ptr_str1, void *ptr_str2);
+enum cmp_res BackStrCompare(void *ptr_str1, void *ptr_str2);
 
 #endif

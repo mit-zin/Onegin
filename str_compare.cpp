@@ -5,8 +5,14 @@
 
 #include "str_compare.h"
 
-enum cmp_res StrCompare(char *str1, char *str2)
+enum cmp_res StrCompare(void *ptr_str1, void *ptr_str2)
 {
+    assert(ptr_str1);
+    assert(ptr_str2);
+
+    char *str1 = *(char **)ptr_str1;
+    char *str2 = *(char **)ptr_str2;
+
     assert(str1);
     assert(str2);
 
@@ -49,8 +55,14 @@ enum cmp_res StrCompare(char *str1, char *str2)
     return EQUAL;
 }
 
-enum cmp_res BackStrCompare(char *str1, char *str2)
+enum cmp_res BackStrCompare(void *ptr_str1, void *ptr_str2)
 {
+    assert(ptr_str1);
+    assert(ptr_str2);
+
+    char *str1 = *(char **)ptr_str1;
+    char *str2 = *(char **)ptr_str2;
+
     assert(str1);
     assert(str2);
 
