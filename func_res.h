@@ -11,4 +11,11 @@ enum func_res
     EOF_FOUND      = 5
 };
 
+enum cmp_res
+{
+    FIRST_SMALLER  = -1,
+    EQUAL          = 0,
+    SECOND_SMALLER = 1
+};
+
 #endif

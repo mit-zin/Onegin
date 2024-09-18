@@ -2,18 +2,12 @@
 #include <stdlib.h>
 #include <assert.h>
 
+#include "ptr_compare.h"
 #include "str_change.h"
 #include "str_compare.h"
 #include "sort.h"
 #include "text_data.h"
 #include "read_file.h"
-
-/*const size_t N_STRINGS = 14;
-const size_t STR_LEN = 50;*/
-
-//int StrCompare(char *str1, char *str2, size_t max_len);
-//void StrChange(char *str1, char *str2, size_t length);
-//void SortText(char text[][STR_LEN]);
 
 int main(void)
 {
@@ -21,39 +15,18 @@ int main(void)
 
     enum func_res res = ReadFile(&Onegin, "onegin_f2.txt");
 
-
-    /*printf("%s\n", Onegin.buffer);
-    printf("%c\n", Onegin.buffer[0]);
-    printf("%d\n", Onegin.buffer[Onegin.buflen - 3]);
-    printf("%s\n", Onegin.text[0]);*/
-
-    //FILE *input = fopen("onegin.txt", "r");
     FILE *output = fopen("sorted_onegin.txt", "wb");
-    //assert(input);
+
     assert(output);
 
-    /*fseek(input, 0L, SEEK_END);
-    printf("%Ld\n", ftell(input));
-    fseek(input, 0L, SEEK_SET);*/
 
-    /*char text[N_STRINGS][STR_LEN] = {};
-
-    for (size_t i = 0; i < N_STRINGS; i++)
-    {
-        fgets(text[i], STR_LEN, input);
-    }*/
+    fprintf(output, "SORT\n\n\n\n\n");
 
     Sort(Onegin.text, sizeof(char **), Onegin.n_strs, &StrCompare, &StrChange);
-    //printf("%c\n", text[0][0]);
-
-    //StrChange(text[0], text[1], STR_LEN);
-    //StrChange(text[1], text[2], STR_LEN);
 
     for (size_t i = 0; i < Onegin.n_strs; i++)
-    {
-        //printf("%c%c\n", text[i][0], text[i][1]);
         fputs(Onegin.text[i], output);
-    }
+
 
     fprintf(output, "\n\n\n\n\nBACK SORT\n\n\n\n\n");
 
@@ -62,9 +35,15 @@ int main(void)
     for (size_t i = 0; i< Onegin.n_strs; i++)
         fputs(Onegin.text[i], output);
 
-    //printf("%d\n", StrCompare(text[0], text[1], STR_LEN));
 
-    //fclose(input);
+    fprintf(output, "\n\n\n\n\nORIGINAL\n\n\n\n\n");
+
+    Sort(Onegin.text, sizeof(char **), Onegin.n_strs, &PtrCompare, &StrChange);
+
+    for (size_t i = 0; i< Onegin.n_strs; i++)
+        fputs(Onegin.text[i], output);
+
+
     fclose(output);
 
     free(Onegin.buffer);

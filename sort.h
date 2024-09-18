@@ -1,6 +1,8 @@
 #ifndef SORT_H
 #define SORT_H
 
+#include "func_res.h"
+#include "ptr_compare.h"
 #include "str_change.h"
 #include "str_compare.h"
 #include "text_data.h"
